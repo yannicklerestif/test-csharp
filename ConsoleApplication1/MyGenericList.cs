@@ -31,24 +31,15 @@ namespace ConsoleApplication1
 
         public void Insert(T newElement)
         {
-            MyNode newNode = new MyNode();
+            MyNode newNode = new MyNode(newElement);
 
-            MyNode oldHead = head;
-
-
-            if (head == null)
-                head = new MyNode(newElement);
+            MyNode oldHead = Head;
 
         }
 
         public void WriteAll()
         {
-            for(T current = Head.Data; current = )
-
-            do
-            {
-                Console.WriteLine()
-            } while (true);
+            
         }
 
     }
