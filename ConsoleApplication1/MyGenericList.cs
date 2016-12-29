@@ -8,38 +8,51 @@ namespace ConsoleApplication1
 {
     class MyGenericList<T>
     {
-        private class MyNode
+        private class MyNode<U>
         {
-            public T Data { get; set; }
-            T Next { get; set; }
-            T Previous { get; set; }
+            public U Data { get; set; }
+            public MyNode<U> Next { get; set; }
 
-            public MyNode(T data)
+            public MyNode(U data)
             {
                 Data = data;
             }
         }
 
-        MyNode Head { get; set; }
-        MyNode Tail { get; set; }
+        MyNode<T> Head { get; set; }
         
-        MyGenericList()
+        public MyGenericList()
         {
             Head = null;
-            Tail = null;
         }
 
         public void Insert(T newElement)
         {
-            MyNode newNode = new MyNode(newElement);
-
-            MyNode oldHead = Head;
-
+            var oldHead = Head;
+            Head = new MyNode<T>(newElement);
+            Head.Next = oldHead;
         }
 
-        public void WriteAll()
+        public void remove()
         {
-            
+            if (Head == null)
+                return;
+            Head = Head.Next;
+        }
+
+        public void Dump()
+        {
+            if(Head == null)
+                Console.WriteLine("List is empty");
+
+            int count = 0;
+            var current = Head;
+            do
+            {
+                Console.WriteLine("Element #{0} : {1}", count, current.Data);
+                count++;
+                current = current.Next;
+            } while (current != null);
         }
 
     }

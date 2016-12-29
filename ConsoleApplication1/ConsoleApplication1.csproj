@@ -43,9 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Class2.cs" />
-    <Compile Include="Class3.cs" />
+    <Compile Include="MyListObject.cs" />
+    <Compile Include="MyClass.cs" />
+    <Compile Include="MyInterface.cs" />
+    <Compile Include="MyGenericClass.cs" />
     <Compile Include="MyGenericList.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />

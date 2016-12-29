@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
-    static class Class2
+    class MyGenericClass<T>
     {
-        public static void SomeMethod()
-        {
-            Console.WriteLine("Executing some static method");
-        }
 
     }
-
 }

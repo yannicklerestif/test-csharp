@@ -9,56 +9,59 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        static int MyFunction(int someVar, out int someOtherVar)
-        {
-            someOtherVar = someVar * 1111;
-            return someVar * 1000;
-        }
-
-        static void MyFunction(object o)
-        {
-            Console.WriteLine("MyFunction(object) called with " + o);
-        }
-
-        static void MyFunction(string s)
-        {
-            Console.WriteLine("MyFunction(string) called with " + s);
-        }
-
-        static void FileOperations()
-        {
-            string fileName = "C:/Users/Yannick/test.txt";
-            string fileContent = null;
-            using (var stream = File.Open(fileName, FileMode.OpenOrCreate))
-            {
-                using (var reader = new StreamReader(stream, Encoding.UTF8))
-                {
-                    fileContent = reader.ReadToEnd();
-                }
-            }
-            Console.WriteLine(fileContent);
-            Console.ReadKey();
-
-            using (var writeStream = File.Open(fileName, FileMode.Append))
-            {
-                using (var streamWriter = new StreamWriter(writeStream, Encoding.UTF8))
-                {
-                    streamWriter.Write("\r\nSome more text, written at {0}", DateTime.Now);
-                }
-            }
-
-        }
-
-        static void MyGenericFunction<T>(T obj)
-        {
-            Console.WriteLine(obj.ToString());
-            Console.WriteLine(typeof(T));
-        }
 
         static void Main(string[] args)
         {
-            MyGenericFunction("abcd");
+            dictionaryTest();
             Console.ReadKey();
+        }
+
+        private static void listTest()
+        {
+            var myList = new List<string>();
+            myList.Add("John");
+            myList.Add("Mike");
+            foreach (var myListElement in myList)
+            {
+                Console.WriteLine(myListElement.IndexOf('h'));
+            }
+        }
+
+        private static void dictionaryTest()
+        {
+            var myDictionary = new Dictionary<string, int>();
+            myDictionary.Add("One", 1);
+            myDictionary.Add("Two", 2);
+            Console.WriteLine(myDictionary.ContainsKey("One"));
+            Console.WriteLine(myDictionary["One"]);
+            //myDictionary.Add("One", 123);
+            myDictionary["One"] = 123;
+            int result;
+            bool found = myDictionary.TryGetValue("Three", out result);
+            Console.WriteLine(found);
+            Console.WriteLine(result);
+            Console.ReadKey();
+            Dump(myDictionary);
+        }
+
+        private static void Dump(List<MyListObject> myList)
+        {
+            if (myList.Count == 0)
+                Console.WriteLine("List is empty");
+            else
+            {
+                for (var i = 0; i < myList.Count; i++)
+                {
+                    Console.WriteLine("Element at {0} : {1}", i, myList[i].Content);
+                }
+            }
+        }
+        private static void Dump<TKey, TValue>(Dictionary<TKey, TValue> myDictionary)
+        {
+            foreach (var keyValuePair in myDictionary)
+            {
+                Console.WriteLine("Element key : {0} - value : {1}", keyValuePair.Key, keyValuePair.Value);
+            }
         }
     }
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication2.SomeNameSpace
+namespace ConsoleApplication1
 {
-    class Class3
+    interface MyInterface 
     {
-        public const string TEST = "abcd";
+        string SomeMethod(string someParam);
     }
 }
