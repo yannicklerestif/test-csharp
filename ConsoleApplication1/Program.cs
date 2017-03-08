@@ -4,16 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
+
+public delegate string StringOperation(string s);
 
 namespace ConsoleApplication1
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-            dictionaryTest();
+            DelegateTest();
             Console.ReadKey();
+        }
+
+        private static string ToUpperCase(string s)
+        {
+            return s.ToUpper();
+        }
+
+        private static void DelegateTest()
+        {
+            StringOperation stringOperation = ToUpperCase;
+            Console.WriteLine(stringOperation("Some string"));
         }
 
         private static void listTest()
@@ -56,6 +69,7 @@ namespace ConsoleApplication1
                 }
             }
         }
+
         private static void Dump<TKey, TValue>(Dictionary<TKey, TValue> myDictionary)
         {
             foreach (var keyValuePair in myDictionary)
